@@ -35,6 +35,11 @@ export function Hero() {
   const rightX = useTransform(smoothX, [-0.5, 0.5], [18, -18]);
   const rightY = useTransform(smoothY, [-0.5, 0.5], [12, -12]);
 
+  // Scroll: the label glides right into the middle of the pill while the sun leaves.
+  const { scrollY } = useScroll();
+  const labelShift = useTransform(scrollY, [0, 700], [0, 18], { clamp: true });
+  const inlineSunOpacity = useTransform(scrollY, [0, 3], [1, 0], { clamp: true });
+
   useEffect(() => {
     const onMove = (event: PointerEvent) => {
       mouseX.set(event.clientX / window.innerWidth - 0.5);
