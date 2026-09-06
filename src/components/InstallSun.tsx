@@ -22,7 +22,7 @@ export function SunShape({ className = "" }: { className?: string }) {
 }
 
 const START_SIZE = 40;
-const END_SIZE = 360;
+const END_SIZE = 260;
 const RANGE = 700;
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
