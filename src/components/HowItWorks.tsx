@@ -204,6 +204,8 @@ export function HowItWorks() {
     setStep(next);
   });
 
+  const current = STEPS[step] ?? STEPS[0];
+
   return (
     <section ref={ref} className="relative bg-ink" style={{ height: `${STEPS.length * 110}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
