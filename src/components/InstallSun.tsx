@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, type RefObject } from "react";
 import { Download } from "lucide-react";
 
