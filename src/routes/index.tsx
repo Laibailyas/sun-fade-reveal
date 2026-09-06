@@ -1,24 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CustomCursor } from "@/components/CustomCursor";
+import { Hero } from "@/components/Hero";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Dotis — Let your feed, feed someone" },
+      { name: "description", content: "Share unused internet and generate donations for causes that need it most — at no cost to you." },
+      { property: "og:title", content: "Dotis — Let your feed, feed someone" },
+      { property: "og:description", content: "Turn unused bandwidth into donations for wildlife, disaster relief, and food aid." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <CustomCursor />
+      <Hero />
+      <section className="flex min-h-screen items-center justify-center bg-ink px-6 text-paper">
+        <h2 className="max-w-3xl text-center font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.95]">Dummy dark section — scroll to watch the sun settle in.</h2>
+      </section>
+      <section id="install" className="flex min-h-screen items-center justify-center bg-background px-6 text-ink">
+        <h2 className="max-w-3xl text-center font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.95]">Dummy light section — the Install Dotis sun stays bottom right.</h2>
+      </section>
+    </main>
   );
 }
