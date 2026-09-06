@@ -96,16 +96,23 @@ export function Hero() {
 
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9, ease }} className="mt-9">
             <a href="#install" data-cursor-hover className="download-button group inline-flex items-center gap-4 overflow-hidden rounded-full bg-ink py-4 pl-9 pr-4 text-lg font-medium text-paper">
-              <span className="relative z-10">Install Dotis</span>
-              <span ref={iconRef} className="download-sun relative z-10 grid h-10 w-10 place-items-center text-flare">
+              <span aria-hidden className="download-fill" />
+              <motion.span style={{ x: labelShift }} className="relative z-10">
+                Install Dotis
+              </motion.span>
+              <motion.span
+                ref={iconRef}
+                style={{ opacity: inlineSunOpacity }}
+                className="download-sun relative z-10 grid h-10 w-10 place-items-center text-flare"
+              >
                 <SunShape className="absolute inset-0 h-full w-full" />
                 <span className="relative grid h-7 w-7 place-items-center overflow-hidden rounded-full">
                   <Download className="download-icon h-5 w-5 text-paper" />
                 </span>
-              </span>
-              <span aria-hidden className="download-shine" />
+              </motion.span>
             </a>
           </motion.div>
+
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.05 }} className="mt-7">
             <p className="text-base font-medium text-ink/80">Available for</p>
