@@ -77,8 +77,8 @@ export function Hero() {
 
         <div className="relative z-10 order-1 text-center lg:order-2">
           <motion.span
-            initial={{ opacity: 0, rotate: -3 }}
-            animate={{ opacity: 1, rotate: -1 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
             className="inline-block bg-tape px-7 py-2.5 font-stamp text-sm font-medium uppercase tracking-[0.3em] text-ink shadow-sm"
           >

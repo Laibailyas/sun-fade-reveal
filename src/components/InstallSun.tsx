@@ -39,7 +39,7 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   // Springs keep the icon fade-out and the label fade-in soft instead of snapping.
   const textOpacity = useSpring(textTarget, { stiffness: 90, damping: 26 });
   const iconOpacity = useSpring(iconTarget, { stiffness: 80, damping: 24 });
-  const fontSize = useTransform(size, (s) => s * 0.13);
+  const fontSize = useTransform(size, (s) => s * 0.095);
 
   const update = (sy: number) => {
     const el = anchorRef.current;
@@ -88,11 +88,13 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       </motion.span>
       <motion.span
         style={{ opacity: textOpacity, fontSize }}
-        className="install-sun-text absolute inset-0 grid place-items-center text-center font-display leading-[1.05] tracking-wide text-paper"
+        className="install-sun-text absolute inset-0 grid place-items-center text-center font-sans font-normal leading-[1.3] text-paper"
       >
-        Install
-        <br />
-        Dotis
+        <span>
+          Install
+          <br />
+          Dotis
+        </span>
       </motion.span>
     </motion.a>
   );
