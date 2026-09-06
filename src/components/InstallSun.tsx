@@ -34,10 +34,12 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   const y = useMotionValue(-999);
   const size = useMotionValue(START_SIZE);
   const badgeOpacity = useMotionValue(0);
-  const textOpacity = useMotionValue(0);
-  const iconOpacity = useMotionValue(1);
-  const fontSize = useTransform(size, (s) => s * 0.12);
-  const textShift = useMotionValue(0);
+  const textTarget = useMotionValue(0);
+  const iconTarget = useMotionValue(1);
+  // Springs keep the icon fade-out and the label fade-in soft instead of snapping.
+  const textOpacity = useSpring(textTarget, { stiffness: 90, damping: 26 });
+  const iconOpacity = useSpring(iconTarget, { stiffness: 80, damping: 24 });
+  const fontSize = useTransform(size, (s) => s * 0.13);
 
   const update = (sy: number) => {
     const el = anchorRef.current;
@@ -53,9 +55,10 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
     y.set(lerp(startY, endY, p));
     size.set(s);
     badgeOpacity.set(sy > 2 ? 1 : 0);
-    textOpacity.set(clamp01((sy - 20) / 140));
-    iconOpacity.set(1 - clamp01((sy - 10) / 90));
-    textShift.set(-p * s * 0.13);
+    // Icon stays a while after the sun leaves the button, then fades away.
+    iconTarget.set(1 - clamp01((p - 0.35) / 0.35));
+    // Label only appears once the sun has settled into the bottom-right corner.
+    textTarget.set(clamp01((p - 0.9) / 0.09));
   };
 
   useMotionValueEvent(scrollY, "change", update);
@@ -84,8 +87,8 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
         <Download className="h-1/2 w-1/2 text-paper" />
       </motion.span>
       <motion.span
-        style={{ opacity: textOpacity, fontSize, x: textShift, y: textShift }}
-        className="install-sun-text absolute inset-0 grid place-items-center text-center font-display leading-[1.05] tracking-wide text-ink"
+        style={{ opacity: textOpacity, fontSize }}
+        className="install-sun-text absolute inset-0 grid place-items-center text-center font-display leading-[1.05] tracking-wide text-paper"
       >
         Install
         <br />
@@ -94,3 +97,4 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
     </motion.a>
   );
 }
+
