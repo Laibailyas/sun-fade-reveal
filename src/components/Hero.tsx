@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Apple, ArrowDown, Download } from "lucide-react";
 import { PartnerMarquee } from "./PartnerMarquee";
