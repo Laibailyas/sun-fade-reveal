@@ -232,7 +232,7 @@ export function HowItWorks() {
             </motion.p>
 
             <div className="mt-6">
-              <StepTitle lines={STEPS[step].title} k={step} />
+              <StepTitle lines={current.title} k={step} />
             </div>
 
             <AnimatePresence mode="wait">
@@ -244,7 +244,7 @@ export function HowItWorks() {
                 transition={{ duration: 0.4, ease }}
                 className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-paper/70 lg:mx-0"
               >
-                {STEPS[step].description}
+                {current.description}
               </motion.p>
             </AnimatePresence>
           </div>
